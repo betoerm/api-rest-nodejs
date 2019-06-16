@@ -1,4 +1,5 @@
 
+var SwaggerExpress = require('swagger-express-mw');
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
@@ -19,6 +20,19 @@ app.use('/produtos', produtosRoute);
 app.use('/pedidos', pedidosRoute);
 app.use('/pagamentos', pagamentosRoute);
 
+SwaggerExpress.create(config, function (err, swaggerExpress) {
+    if (err) { throw err; }
 
+    // install middleware
+    swaggerExpress.register(app);
 
-module.exports = app;
+    var port = process.env.PORT || 10010;
+    app.listen(port, function () {
+        if (swaggerExpress.runner.swagger.paths['/hello']) {
+            console.log('try this:\ncurl http://127.0.0.1:' + port + '/hello?name=Scott');
+        }
+        resolve(app);
+    });
+});
+
+    module.exports = app;

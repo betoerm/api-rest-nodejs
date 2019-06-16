@@ -1,0 +1,394 @@
+---
+swagger: "2.0"
+info:
+  description: Isto é uma Marketplace API
+  version: 1.0.0
+  title: Simple Marketplace API
+  contact:
+    email: betoer@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: virtserver.swaggerhub.com
+basePath: /betoerm/Marketplace/1.0.0
+tags:
+- name: produtos
+  description: Operação com produtos
+- name: pedidos
+  description: Operação com pedidos
+- name: pagamentos
+  description: Operação com pagamentos
+schemes:
+- https
+paths:
+  /produtos:
+    get:
+      tags:
+      - produtos
+      summary: Lista todos os produtos
+      description: |
+        Lista todos os produtos cadastrados
+      operationId: getProdutos
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: Lista de produtos retornada com sucesso!
+        400:
+          description: Nenhum produto cadastrado!
+    post:
+      tags:
+      - produtos
+      summary: Adiciona um produto
+      description: Adiciona um produto
+      operationId: addProduto
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: itemProduto
+        description: Item de produto a ser adicionado
+        required: false
+        schema:
+          $ref: '#/definitions/Produtos'
+      responses:
+        201:
+          description: Produto cadastrado com sucesso!
+        400:
+          description: Requisição inválida!
+        409:
+          description: Produto não encontrado!
+  /produtos/{produtoId}:
+    get:
+      tags:
+      - produtos
+      summary: Lista um produto específico
+      description: Retorna um produto cadastrado
+      operationId: getProdutoById
+      parameters:
+      - in: body
+        name: produtoId
+        description: Item de produto a ser encontrado
+        required: true
+        schema:
+          $ref: '#/definitions/Produtos'
+    put:
+      tags:
+      - produtos
+      summary: Atualiza um produto
+      description: Altera um produto
+      operationId: putProduto
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: produtoId
+        description: Item de produto alterado
+        required: true
+        schema:
+          $ref: '#/definitions/Produtos'
+      responses:
+        201:
+          description: item altered
+        400:
+          description: Requisição inválida!
+        409:
+          description: Produto não encontrado!
+    delete:
+      tags:
+      - produtos
+      summary: Excluir um produto
+      description: Exclui um produto existente
+      operationId: deleteProduto
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: produtoId
+        description: Item de produto a ser excluído
+        required: true
+        schema:
+          $ref: '#/definitions/Produtos'
+      responses:
+        201:
+          description: Produto excluído com sucesso!
+        400:
+          description: Requisição inválida!
+        409:
+          description: Produto não encontrado!
+  /pedidos:
+    get:
+      tags:
+      - pedidos
+      summary: Lista todos os pedidos
+      description: |
+        Lista todos os pedidos cadastrados
+      operationId: getPedidos
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: Lista de pedidos retornada com sucesso!
+        400:
+          description: Nenhum pedido cadastrado!
+    post:
+      tags:
+      - pedidos
+      summary: Adiciona um pedido
+      description: Adiciona um pedido
+      operationId: addPedido
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: itemPedido
+        description: Um pedido a ser adicionado
+        required: false
+        schema:
+          $ref: '#/definitions/Pedidos'
+      responses:
+        201:
+          description: Pedido cadastrado com sucesso!
+        400:
+          description: Requisição inválida!
+  /pedidos/{pedidoId}:
+    get:
+      tags:
+      - pedidos
+      summary: Lista um pedido específico
+      description: Retorna um pedido cadastrado
+      operationId: getPedidoById
+      parameters:
+      - in: body
+        name: pedidoId
+        description: Item de pedido a ser encontrado
+        required: true
+        schema:
+          $ref: '#/definitions/Pedidos'
+    put:
+      tags:
+      - pedidos
+      summary: Atualiza um pedido
+      description: Altera um pedido
+      operationId: putPedido
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: pedidoId
+        description: Item de pedido alterado
+        required: true
+        schema:
+          $ref: '#/definitions/Pedidos'
+      responses:
+        201:
+          description: Pedido alterado!
+        400:
+          description: Requisição inválida!
+        409:
+          description: Pedido não encontrado!
+    delete:
+      tags:
+      - pedidos
+      summary: Excluir um pedido
+      description: Exclui um pedido existente
+      operationId: deletePedido
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: pedidoId
+        description: Item de pedido a ser excluído
+        required: true
+        schema:
+          $ref: '#/definitions/Pedidos'
+      responses:
+        201:
+          description: Pedido excluído com sucesso!
+        400:
+          description: Requisição inválida!
+        409:
+          description: Pedido não encontrado!
+  /pagamentos:
+    get:
+      tags:
+      - pagamentos
+      summary: Lista todos os pagamentos
+      description: |
+        Lista todos os pedidos cadastrados
+      operationId: getPagamentos
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: Lista de pagamentos retornada com sucesso!
+        400:
+          description: Nenhum pagamento cadastrado!
+    post:
+      tags:
+      - pagamentos
+      summary: Adiciona um pagamento
+      description: Adiciona um pagamento
+      operationId: addPagamentos
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: itempagamento
+        description: Um pagamento a ser adicionado
+        required: false
+        schema:
+          $ref: '#/definitions/Pagamentos'
+      responses:
+        201:
+          description: Pagamento cadastrado com sucesso!
+        400:
+          description: Requisição inválida!
+  /pagamentos/{pagamentoId}:
+    get:
+      tags:
+      - pagamentos
+      summary: Lista um pagamento específico
+      description: Retorna um pagamento cadastrado
+      operationId: getPagamentoById
+      parameters:
+      - in: body
+        name: pagamentoId
+        description: Item de pagamento a ser encontrado
+        required: true
+        schema:
+          $ref: '#/definitions/Pagamentos'
+    put:
+      tags:
+      - pagamentos
+      summary: Atualiza um pagamento
+      description: Altera um pagamento
+      operationId: putPagamento
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: pagamentoId
+        description: Item de pagamento alterado
+        required: true
+        schema:
+          $ref: '#/definitions/Pedidos'
+      responses:
+        201:
+          description: Pagamento alterado!
+        400:
+          description: Requisição inválida!
+        409:
+          description: Pagamento não encontrado!
+    delete:
+      tags:
+      - pagamentos
+      summary: Excluir um pagamento
+      description: Exclui um pagamento existente
+      operationId: deletePagamento
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: pagamentoId
+        description: Item de pagamento a ser encontrado
+        required: true
+        schema:
+          $ref: '#/definitions/Pagamentos'
+      - in: body
+        name: pedidoId
+        description: Item de pagamento a ser excluído
+        required: true
+        schema:
+          $ref: '#/definitions/Pagamentos'
+      responses:
+        201:
+          description: Pagamento excluído com sucesso!
+        400:
+          description: Requisição inválida!
+        409:
+          description: Pagamento não encontrado!
+definitions:
+  Produtos:
+    type: object
+    required:
+    - description
+    - id
+    - name
+    - price
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 1
+      name:
+        type: string
+        example: relógio
+      description:
+        type: string
+        example: relógio sensacional
+      price:
+        type: number
+        example: 1000.0
+  Pedidos:
+    type: object
+    required:
+    - clienteId
+    - id
+    - produtoId
+    - quantidade
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 1
+      produtoId:
+        type: integer
+        format: int64
+        example: 1
+      quantidade:
+        type: integer
+        format: int64
+        example: 1
+      clienteId:
+        type: integer
+        format: int64
+        example: 1
+  Pagamentos:
+    type: object
+    required:
+    - id
+    - pedidoId
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 1
+      pedidoId:
+        type: integer
+        format: int64
+        example: 1
+      tipoPagamneto:
+        type: string
+        example: Dinheiro
